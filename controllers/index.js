@@ -6,7 +6,7 @@ exports.sendQuizList = async (req, res) => {
 };
 
 exports.sendQuiz = async (req, res) => {
-  let quiz = await getQuiz(req.params.quizId);
+  let quiz = await getQuiz(req.params.quizName);
   res.json(quiz);
 };
 
