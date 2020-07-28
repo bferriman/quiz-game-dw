@@ -1,9 +1,5 @@
 const router = require("express").Router();
-const {
-  sendQuizList,
-  sendQuiz,
-  checkAnswer
-} = require("../../controllers/quizController");
+const { sendQuizList, sendQuiz, checkAnswer } = require("../../controllers");
 
 // Matches with "/api"
 

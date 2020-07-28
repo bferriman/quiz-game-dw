@@ -1,3 +1,5 @@
+const data = require("../data");
+
 exports.sendQuizList = (req, res) => {};
 
 exports.sendQuiz = (req, res) => {};
