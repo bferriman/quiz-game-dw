@@ -5,6 +5,6 @@ const { sendQuizList, sendQuiz, checkAnswer } = require("../../controllers");
 
 router.get("/quiz", sendQuizList);
 router.get("/quiz/:quizId", sendQuiz);
-router.post("/quiz/:quiId", checkAnswer);
+router.post("/quiz/:quizId", checkAnswer);
 
 module.exports = router;
