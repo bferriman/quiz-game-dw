@@ -14,7 +14,5 @@ exports.checkAnswer = async (req, res) => {
   const { question, answer } = req.body;
   let quiz = await getQuiz(req.params.quizName, "server");
   const correctAnswer = await getAnswer(quiz, question);
-  console.log("Submitted answer: " + answer);
-  console.log("Correct answer: " + correctAnswer);
   res.json(answer === correctAnswer);
 };

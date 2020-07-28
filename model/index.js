@@ -44,5 +44,3 @@ exports.getAnswer = (quiz, question) => {
     });
   });
 };
-
-// module.exports.getQuizList = getQuizList;
