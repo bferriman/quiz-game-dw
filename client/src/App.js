@@ -1,23 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ContentWrapper from "./components/ContentWrapper";
+import Title from "./pages/Title";
+import Quiz from "./pages/Quiz";
+import Score from "./pages/Score";
 
 function App() {
   return (
     <Router>
       <ContentWrapper>
-        <Header />
         <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <PrivateRoute exact path="/account" component={Account} />
-          <AdminRoute exact path="/admin" component={Admin} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/contact" component={Contact} />
-          <Route exact path="/signin" component={SignIn} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/store" component={Store} />
+          <Route exact path={["/", "/home"]} component={Title} />
+          <Route exact path="/quiz" component={Quiz} />
+          <Route exact path="/score" component={Score} />
         </Switch>
       </ContentWrapper>
-      <Footer />
     </Router>
   );
 }
