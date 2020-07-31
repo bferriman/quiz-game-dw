@@ -9,12 +9,10 @@ function Title() {
   const [selectedQuiz, setSelectedQuiz] = useState();
 
   const loadQuizzes = () => {
-    console.log("Sending request for quizzes");
     API.getQuizzes().then((res) => {
       if (res.error) {
         console.log(res.error);
       } else {
-        console.log("trying to set quizzes");
         setQuizzes(res.data);
       }
     });
@@ -33,7 +31,6 @@ function Title() {
   }, []);
 
   const handleQuizSelect = (quiz) => {
-    console.log(quiz.name + " selected!");
     setSelectedQuiz(quiz);
   };
 
