@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function Title() {
   const [quizzes, setQuizzes] = useState([]);
@@ -36,72 +37,114 @@ function Title() {
     setSelectedQuiz(quiz);
   };
 
+  const getImageURL = () => {
+    const fileName = selectedQuiz ? selectedQuiz.name : "questionmarks";
+    return `./images/${fileName}.jpg`;
+  };
+
+  const getAltText = () => {
+    return selectedQuiz
+      ? selectedQuiz.name.replace("_", " ")
+      : "Question Marks";
+  };
+
   return (
     <>
-      <h1>Select A Quiz!</h1>
-      <div className="dropdown">
-        <button
-          className="btn btn-secondary btn-lg dropdown-toggle"
-          type="button"
-          id="quizSelectButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          {selectedQuiz ? selectedQuiz.name : "Select Quiz"}
-        </button>
-        <div className="dropdown-menu" aria-labelledby="quizSelectButton">
-          {storedQuizzes.length !== 0 ? (
-            storedQuizzes.map((quiz, i) => {
-              return (
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10">
+            <div className="my-5" id="image">
+              <img
+                className="cover"
+                src={getImageURL()}
+                alt={getAltText()}
+              ></img>
+            </div>
+            <div id="inputs">
+              <div className="dropdown my-3 text-center">
                 <button
-                  className="dropdown-item"
+                  className="btn btn-secondary btn-lg dropdown-toggle rounded-pill"
                   type="button"
-                  onClick={() =>
-                    handleQuizSelect({ name: quiz.name, inProgress: true })
-                  }
-                  key={i}
+                  id="quizSelectButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
                 >
-                  {quiz.name + " (in progress...)"}
+                  {selectedQuiz
+                    ? selectedQuiz.name.replace("_", " ")
+                    : "Select Quiz"}
                 </button>
-              );
-            })
-          ) : (
-            <></>
-          )}
-          {quizzes.map((quiz, i) => {
-            return (
-              <button
-                className="dropdown-item"
-                type="button"
-                onClick={() =>
-                  handleQuizSelect({ name: quiz, inProgress: false })
-                }
-                key={i + 1000}
-              >
-                {quiz}
-              </button>
-            );
-          })}
+                <div
+                  className="dropdown-menu"
+                  aria-labelledby="quizSelectButton"
+                >
+                  {storedQuizzes.length !== 0 ? (
+                    storedQuizzes.map((quiz, i) => {
+                      return (
+                        <button
+                          className="dropdown-item"
+                          type="button"
+                          onClick={() =>
+                            handleQuizSelect({
+                              name: quiz.name,
+                              inProgress: true,
+                            })
+                          }
+                          key={i}
+                        >
+                          {quiz.name.replace("_", " ") + " (in progress...)"}
+                        </button>
+                      );
+                    })
+                  ) : (
+                    <></>
+                  )}
+                  {quizzes.map((quiz, i) => {
+                    return (
+                      <button
+                        className="dropdown-item"
+                        type="button"
+                        onClick={() =>
+                          handleQuizSelect({ name: quiz, inProgress: false })
+                        }
+                        key={i + 1000}
+                      >
+                        {quiz.replace("_", " ")}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="startbtn my-3 text-center">
+                <Link
+                  to={{
+                    pathname: "/quiz",
+                    state: {
+                      name: selectedQuiz ? selectedQuiz.name : undefined,
+                      inProgress: selectedQuiz
+                        ? selectedQuiz.inProgress
+                        : undefined,
+                    },
+                  }}
+                >
+                  <button
+                    className={
+                      selectedQuiz
+                        ? "btn btn-secondary btn-lg rounded-pill"
+                        : "btn btn-secondary btn-lg rounded-pill d-none"
+                    }
+                    type="button"
+                    id="quizSelectButton"
+                    disabled={selectedQuiz ? false : true}
+                  >
+                    Let's Go!
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <Link
-        to={{
-          pathname: "/quiz",
-          state: {
-            name: selectedQuiz ? selectedQuiz.name : undefined,
-            inProgress: selectedQuiz ? selectedQuiz.inProgress : undefined
-          }
-        }}
-      >
-        <button
-          className="btn btn-secondary btn-lg"
-          type="button"
-          id="quizSelectButton"
-        >
-          Let's Go!
-        </button>
-      </Link>
     </>
   );
 }
