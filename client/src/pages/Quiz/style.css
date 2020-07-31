@@ -1,0 +1,18 @@
+#question {
+  background-color: white;
+  border-radius: 50px;
+  height: 350px;
+  width: 100%;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.progress-tracker {
+  height: 48px;
+  font-size: 36px;
+  color: #f34111;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

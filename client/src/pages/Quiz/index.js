@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import { Redirect } from "react-router-dom";
 import AnswerButton from "../../components/AnswerButton";
+import "./style.css";
 
 function Quiz(props) {
   const { name, inProgress } = props.location.state;
@@ -157,17 +158,33 @@ function Quiz(props) {
     <>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-lg-8 col-md-10" id="question">
+          <div className="col-lg-8 col-md-10 progress-tracker pr-5">
+            {`${quizIndex + 1}/${quiz.questions.length}`}
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div
+            className="col-lg-8 col-md-10 mb-5 px-4 text-center"
+            id="question"
+          >
             {quiz.questions[quizIndex].text}
           </div>
-          <div id="answers">
-            {quiz.questions[quizIndex].answers.map((answer, i) => {
-              return (
-                <AnswerButton index={i} clickHandler={handleAnswerSubmit}>
-                  {answer}
-                </AnswerButton>
-              );
-            })}
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10" id="answers">
+            <div className="row">
+              {quiz.questions[quizIndex].answers.map((answer, i) => {
+                return (
+                  <AnswerButton
+                    index={i}
+                    clickHandler={handleAnswerSubmit}
+                    key={i}
+                  >
+                    {answer}
+                  </AnswerButton>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
