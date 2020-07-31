@@ -77,7 +77,7 @@ function Quiz(props) {
       //load new quiz from server
       loadQuiz(name);
     }
-  }, []);
+  }, [name, inProgress]);
 
   const storeQuizState = () => {
     const quizzesJSON = localStorage.getItem("quizzes");
@@ -133,12 +133,12 @@ function Quiz(props) {
           imageAlt: "Answer Incorrect!",
         });
     setTimeout(() => {
-      gameIsOver ? setGameOver(true) : setQuizIndex(quizIndex + 1);
       setFeedback({
         show: false,
         imageURL: "",
         imageAlt: "",
       });
+      gameIsOver ? setGameOver(true) : setQuizIndex(quizIndex + 1);
     }, 1000);
   };
 
