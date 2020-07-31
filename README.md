@@ -2,7 +2,7 @@
 
 ## Description
 
-A quiz game where the user selects a quiz, is asked a series of questions, and is presented with their score at the end. User answers are sent to the server to check whether they are correct or incorrect, keeping the quiz answers hidden from the client. User's quiz progress is saved locally so that the game can be resumed at a later time.
+A quiz game where the user selects a quiz, is asked a series of questions, and is presented with their score at the end. User answers are sent to the server to check whether they are correct or incorrect, keeping the quiz answers hidden from the client. The user's quiz progress is saved locally so that the game can be resumed at a later time.
 
 ## Technologies Used
 
