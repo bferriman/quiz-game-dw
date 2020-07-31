@@ -63,7 +63,7 @@ function Title() {
             <div id="inputs">
               <div className="dropdown my-3 text-center">
                 <button
-                  className="btn btn-secondary btn-lg dropdown-toggle rounded-pill"
+                  className="btn btn-secondary btn-lg dropdown-toggle rounded-pill select-button"
                   type="button"
                   id="quizSelectButton"
                   data-toggle="dropdown"
@@ -134,7 +134,7 @@ function Title() {
                         : "btn btn-secondary btn-lg rounded-pill d-none"
                     }
                     type="button"
-                    id="quizSelectButton"
+                    id="quiz-select-button"
                     disabled={selectedQuiz ? false : true}
                   >
                     Let's Go!

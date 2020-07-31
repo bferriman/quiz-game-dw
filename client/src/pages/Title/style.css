@@ -4,3 +4,16 @@
   height: 350px;
   width: 100%;
 }
+
+.select-button {
+  width: 75%;
+  height: 100%;
+}
+
+.dropdown-menu {
+  width: 75%;
+}
+
+#quiz-select-button {
+  width: 38%;
+}
