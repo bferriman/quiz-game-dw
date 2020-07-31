@@ -27,3 +27,21 @@ Reservoir Dogs (correct)
 The Hateful Eight
 Django Unchained
 Pulp Fiction
+
+What was the highest-grossing film of the 90's?
+Titanic (correct)
+Independence Day
+The Lion King
+Home Alone
+
+Who has been awarded the most Oscars for best actor/actress?
+Katharine Hepburn (correct)
+Daniel Day-Lewis
+Marlon Brando
+Meryl Streep
+
+Which Batman film featured the villains Two-Face and The Riddler?
+Batman Forever (correct)
+Batman & Robin
+Batman Returns
+The Dark Knight

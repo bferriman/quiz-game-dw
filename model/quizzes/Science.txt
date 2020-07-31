@@ -22,7 +22,7 @@ A Comet
 An Asteroid
 A Planet
 
-Which of the following is the smallest?
+Which of the following units is the smallest?
 Picogram (correct)
 Milligram
 Nanogram
