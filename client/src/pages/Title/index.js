@@ -115,7 +115,7 @@ function Title() {
                   })}
                 </div>
               </div>
-              <div className="startbtn my-3 text-center">
+              <div className="my-3 text-center">
                 <Link
                   to={{
                     pathname: "/quiz",
@@ -134,8 +134,7 @@ function Title() {
                         : "btn btn-secondary btn-lg rounded-pill d-none"
                     }
                     type="button"
-                    id="quiz-select-button"
-                    disabled={selectedQuiz ? false : true}
+                    id="quiz-start-button"
                   >
                     Let's Go!
                   </button>

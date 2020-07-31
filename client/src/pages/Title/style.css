@@ -14,6 +14,7 @@
   width: 75%;
 }
 
-#quiz-select-button {
+#quiz-start-button {
   width: 38%;
+  background-color: #80be3a;
 }
