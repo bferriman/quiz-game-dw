@@ -18,6 +18,11 @@ function Quiz(props) {
   });
   const [quizIndex, setQuizIndex] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [feedback, setFeedback] = useState({
+    show: false,
+    imageURL: "",
+    imageAlt: "",
+  });
 
   // called if user chose to continue a stored quiz in progress
   const loadQuizInProgress = (quizName) => {
@@ -115,6 +120,28 @@ function Quiz(props) {
     }
   };
 
+  const showFeedback = (answerIsCorrect, gameIsOver) => {
+    answerIsCorrect
+      ? setFeedback({
+          show: true,
+          imageURL: "./images/correct.png",
+          imageAlt: "Answer Correct!",
+        })
+      : setFeedback({
+          show: true,
+          imageURL: "./images/incorrect.png",
+          imageAlt: "Answer Incorrect!",
+        });
+    setTimeout(() => {
+      gameIsOver ? setGameOver(true) : setQuizIndex(quizIndex + 1);
+      setFeedback({
+        show: false,
+        imageURL: "",
+        imageAlt: "",
+      });
+    }, 1000);
+  };
+
   const handleAnswerSubmit = (index) => {
     const question = quiz.questions[quizIndex];
     API.submitAnswer(quiz.name, question.text, question.answers[index]).then(
@@ -128,11 +155,10 @@ function Quiz(props) {
           if (quiz.questions[quizIndex + 1] === undefined) {
             //reached end of quiz
             deleteFromStorage();
-            console.log("About to resubmit");
-            setGameOver(true);
+            showFeedback(res.data, true);
           } else {
             storeQuizState();
-            setQuizIndex(quizIndex + 1);
+            showFeedback(res.data, false);
           }
         }
       }
@@ -158,16 +184,21 @@ function Quiz(props) {
     <>
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-lg-8 col-md-10 progress-tracker pr-5">
+          <div className="col-lg-8 col-md-10 progress-tracker pr-5 mt-4">
             {`${quizIndex + 1}/${quiz.questions.length}`}
           </div>
         </div>
         <div className="row justify-content-center">
-          <div
-            className="col-lg-8 col-md-10 mb-5 px-4 text-center"
-            id="question"
-          >
-            {quiz.questions[quizIndex].text}
+          <div className="col-lg-8 col-md-10 mb-5 px-4" id="question">
+            {feedback.show === false ? (
+              quiz.questions[quizIndex].text
+            ) : (
+              <img
+                className="feedback-image"
+                src={feedback.imageURL}
+                alt={feedback.imageAlt}
+              ></img>
+            )}
           </div>
         </div>
         <div className="row justify-content-center">
