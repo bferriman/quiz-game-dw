@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import { Redirect } from "react-router-dom";
+import AnswerButton from "../../components/AnswerButton";
 
 function Quiz(props) {
   const { name, inProgress } = props.location.state;
@@ -10,9 +11,9 @@ function Quiz(props) {
       {
         text: "loading...",
         status: "unanswered",
-        answers: ["loading...", "loading...", "loading...", "loading..."]
-      }
-    ]
+        answers: ["loading...", "loading...", "loading...", "loading..."],
+      },
+    ],
   });
   const [quizIndex, setQuizIndex] = useState(0);
   const [gameOver, setGameOver] = useState(false);
@@ -144,8 +145,8 @@ function Quiz(props) {
           to={{
             pathname: "/score",
             state: {
-              quiz: quiz
-            }
+              quiz: quiz,
+            },
           }}
         />
       );
@@ -154,49 +155,20 @@ function Quiz(props) {
 
   return (
     <>
-      <div id="question-container">
-        <div id="question">{quiz.questions[quizIndex].text}</div>
-        <div id="answers">
-          <button
-            className="btn btn-info btn-lg"
-            id="answer1"
-            type="button"
-            onClick={() => {
-              handleAnswerSubmit(0);
-            }}
-          >
-            {quiz.questions[quizIndex].answers[0]}
-          </button>
-          <button
-            className="btn btn-info btn-lg"
-            id="answer1"
-            type="button"
-            onClick={() => {
-              handleAnswerSubmit(1);
-            }}
-          >
-            {quiz.questions[quizIndex].answers[1]}
-          </button>
-          <button
-            className="btn btn-info btn-lg"
-            id="answer1"
-            type="button"
-            onClick={() => {
-              handleAnswerSubmit(2);
-            }}
-          >
-            {quiz.questions[quizIndex].answers[2]}
-          </button>
-          <button
-            className="btn btn-info btn-lg"
-            id="answer1"
-            type="button"
-            onClick={() => {
-              handleAnswerSubmit(3);
-            }}
-          >
-            {quiz.questions[quizIndex].answers[3]}
-          </button>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-lg-8 col-md-10" id="question">
+            {quiz.questions[quizIndex].text}
+          </div>
+          <div id="answers">
+            {quiz.questions[quizIndex].answers.map((answer, i) => {
+              return (
+                <AnswerButton index={i} clickHandler={handleAnswerSubmit}>
+                  {answer}
+                </AnswerButton>
+              );
+            })}
+          </div>
         </div>
       </div>
       {redirectUser()}
