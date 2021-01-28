@@ -1,4 +1,4 @@
-# Quiz Game (Direwolf Digital coding challenge)
+# Quiz Game
 
 ## Description
 
